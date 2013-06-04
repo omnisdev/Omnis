@@ -1,6 +1,6 @@
-﻿var GoogleMap = function (container) {
-    var map;    
-    var init = function () {
+﻿var GoogleMap = function(container) {
+    var map;
+    init = function() {
         var mapOptions = {
             zoom: 15,
             center: new google.maps.LatLng(14.62057, 120.96597),

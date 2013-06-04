@@ -58,11 +58,10 @@
     <script src="<%= ResolveUrl("~/Scripts/App/main.js") %>" type="text/javascript"></script>
     <script src="<%= ResolveUrl("~/Scripts/App/map.js") %>" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script type="text/javascript">        
+    <script type="text/javascript">
         $(document).ready(function () {
             $("#mainmenu").kendoMenu();
-
-            var map = new GoogleMap('map-canvas');            
+            var map = new GoogleMap('map-canvas');
             google.maps.event.addDomListener(window, 'load', map.initialize());
         });        
     </script>
