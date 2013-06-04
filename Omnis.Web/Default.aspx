@@ -17,11 +17,16 @@
     <link href="Content/kendo/2013.1.319/kendo.bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="Scripts/libs/modernizr-1.7.min.js" type="text/javascript"></script>
     <style>
-        html, body, #map-canvas
+        html, body
         {
             height: 100%;
-            margin: 10px;
+            margin: 0;
+        }
+        #map-canvas
+        {
+            height: 100%;
             padding: 0;
+            border: 1px;
         }
     </style>
 </head>
@@ -51,25 +56,15 @@
     <script src="<%= ResolveUrl("~/Scripts/plugins.js") %>" type="text/javascript"></script>
     <script src="<%= ResolveUrl("~/Scripts/script.js") %>" type="text/javascript"></script>
     <script src="<%= ResolveUrl("~/Scripts/App/main.js") %>" type="text/javascript"></script>
+    <script src="<%= ResolveUrl("~/Scripts/App/map.js") %>" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script>
-        // Enable the visual refresh
-        google.maps.visualRefresh = true;
-
-        var map;
-        function initializeMap() {
-            var mapOptions = {
-                zoom: 15,
-                center: new google.maps.LatLng(14.62057, 120.96597),
-                mapTypeId: google.maps.MapTypeId.TERRAIN
-            };
-            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-        }
-        google.maps.event.addDomListener(window, 'load', initializeMap);
-
+    <script type="text/javascript">        
         $(document).ready(function () {
             $("#mainmenu").kendoMenu();
-        });
+
+            var map = new GoogleMap('map-canvas');            
+            google.maps.event.addDomListener(window, 'load', map.initialize());
+        });        
     </script>
 </body>
 </html>
