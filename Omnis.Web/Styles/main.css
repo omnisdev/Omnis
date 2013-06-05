@@ -1,0 +1,12 @@
+﻿/* File Created: June 5, 2013 */
+html, body
+{
+    height: 100%;
+    margin: 0;
+}
+#map-canvas
+{
+    height: 100%;
+    padding: 0;
+    border: 1px;
+}
