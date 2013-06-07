@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs"
     Inherits="Omnis.Web.Default" %>
-<%@ Import Namespace="System.Web.Optimization" %>
 
+<%@ Import Namespace="System.Web.Optimization" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,27 @@
     <link rel="stylesheet" href="Styles/style.css?v=2" />
     <link rel="stylesheet" media="handheld" href="Styles/handheld.css?v=2" />
     <%: Styles.Render("~/bundle/css") %>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"> 
+    </script>
+    <%: Scripts.Render("~/bundle/js") %>
+    <script type="text/javascript">
+        var map;
+        $(document).ready(function () {
+            $("#mainmenu").kendoMenu();
+
+            google.maps.visualRefresh = true;
+            google.maps.event.addDomListener(window, 'load', initialize);
+        });
+
+        //
+        // initialize the goolge map in the browser.
+        function initialize() {
+            var mapDiv = document.getElementById("map-canvas");
+            map = new GoogleMap(mapDiv);
+            map.Initialize();
+            map.SetMarker(14.62057, 120.96597);
+        }
+    </script>
 </head>
 <body>
     <div class="k-content">
@@ -23,32 +44,29 @@
                 <h1>
                     Omnis Web Client Interface</h1>
                 <ul id="mainmenu">
-                    <li>Import
+                    <li>File
                         <ul>
-                            <li>Log file</li>
+                            <li>New Project</li>
+                            <li>Open Project</li>
+                            <li>Import Data</li>
                         </ul>
+                    </li>
+                    <li>View
+                        <ul>
+                            <li>Map Legend</li>
+                            <li>BTS</li>
+                            <li>CEL</li>
+                            <li>Call Trace</li></ul>
                     </li>
                 </ul>
             </div>
         </header>
     </div>
-    <div id="map-canvas">
+    <div id="map">
+        <div id="map-canvas">
+        </div>
     </div>
-    <footer>This is developed by Omnis Development Philippines. Copyright (c) 2013.</footer>
-    <%: Scripts.Render("~/bundle/js") %>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script type="text/javascript">
-        var map;
-        $(document).ready(function () {
-            $("#mainmenu").kendoMenu();
-            google.maps.event.addDomListener(window, 'load', initialize);
-        });        
-        
-        function initialize() {
-            map = new GoogleMap('map-canvas');
-            map.Initialize();
-            map.SetMarker(14.62057, 120.96597);
-        }
-    </script>
+    <div class="k-content">
+        <footer>This is developed by Omnis Development Philippines. Copyright (c) 2013.</footer></div>
 </body>
 </html>

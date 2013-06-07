@@ -7,12 +7,12 @@ var GoogleMap = function (container) {
         var mapOptions = {
             zoom: 15,
             center: new google.maps.LatLng(14.62057, 120.96597),
-            mapTypeId: google.maps.MapTypeId.TERRAIN
+            mapTypeId: google.maps.MapTypeId.ROAD
         };
-        map = new google.maps.Map(document.getElementById(container), mapOptions);              
+        map = new google.maps.Map(container, mapOptions);
         return map;
     };
-    setMark = function(lat, long) {
+    setMark = function (lat, long) {
         // marker options
         var markerOptions = {
             position: new google.maps.LatLng(lat, long),

@@ -612,6 +612,7 @@
     <Content Include="Styles\main.css" />
     <Content Include="Styles\handheld.css" />
     <Content Include="Styles\style.css" />
+    <Content Include="test.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
