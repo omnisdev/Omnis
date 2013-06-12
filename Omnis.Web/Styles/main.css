@@ -48,3 +48,11 @@ html, body, #map
     overflow: scroll;
     height: 150px;
 }
+.icon-small {
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+}
+.tableForm td {
+    padding: 3px;
+}

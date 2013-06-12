@@ -69,6 +69,8 @@
     <Content Include="apple-touch-icon-72x72-precomposed.png" />
     <Content Include="apple-touch-icon-precomposed.png" />
     <Content Include="apple-touch-icon.png" />
+    <Content Include="Content\icon_delete_small.png" />
+    <Content Include="Content\icon_edit_small.png" />
     <Content Include="Content\kendo\2013.1.319\Black\editor.png" />
     <Content Include="Content\kendo\2013.1.319\Black\imagebrowser.png" />
     <Content Include="Content\kendo\2013.1.319\Black\loading-image.gif" />
@@ -197,6 +199,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="robots.txt" />
+    <Content Include="Scripts\App\mapLegendViewModel.js" />
     <Content Include="Scripts\App\importViewModel.js" />
     <Content Include="Scripts\App\map.js" />
     <Content Include="Scripts\App\main.js" />

@@ -27,6 +27,10 @@
             google.maps.event.addDomListener(window, 'load', initialize);
 
             //
+            // initialize the kendo declarative widgets.
+            kendo.init($("body"));
+
+            //
             // initialize the kendo menu.
             $("#mainmenu").kendoMenu({
                 select: function (e) {
@@ -35,11 +39,11 @@
                         $("#splitter").data("kendoSplitter").toggle("#left-pane");
                     }
                     else if (selectedMenu === "Import Data") {
-                        var window = $("#wndImport");
-                        if (!window.data("kendoWindow")) {
-                            window.kendoWindow({
+                        var windowImport = $("#wndImport");
+                        if (!windowImport.data("kendoWindow")) {
+                            windowImport.kendoWindow({
                                 width: "400px",
-                                model: true,
+                                modal: true,
                                 resizable: false,
                                 title: "Import Log files",
                                 open: function (e) {
@@ -47,7 +51,19 @@
                                 }
                             });
                         }
-                        window.data("kendoWindow").open().center();
+                        windowImport.data("kendoWindow").open().center();
+                    }
+                    else if (selectedMenu === "Map Legend Settings") {
+                        var windowMapLegend = $("#wndMapLegend");
+                        if (!windowMapLegend.data("kendoWindow")) {
+                            windowMapLegend.kendoWindow({
+                                width: "600px",
+                                modal: true,
+                                resizable: false,
+                                title: "Map Legend Settings"
+                            });
+                        }
+                        windowMapLegend.data("kendoWindow").open().center();
                     }
                 }
             });
@@ -85,13 +101,19 @@
             });
 
             //
+            // client side handler to close the dialog for map legend.
+            $("#wndMapLegend-close-button").click(function (e) {
+                $("#wndMapLegend").data("kendoWindow").close();
+            });
+
+            //
             // client side handler when selecting file in file dialog.
             // this depends on importViewModel.
             $("#selectFile").change(function (e) {
                 var selectedFile = $(this).val();
                 if (!_.isEmpty(selectedFile)) {
                     if (ImporterViewModel.exists(selectedFile)) {
-                        toastr.warning("The selected import file already exists in list.","Warning");
+                        toastr.warning("The selected import file already exists in list.", "Warning");
                     }
                     else {
                         var item = new Object();
@@ -99,6 +121,32 @@
                         ImporterViewModel.list.push(item);
                     }
                 }
+            });
+
+            //
+            // client side handler when adding new map legend.
+            $("#wndMapLegend-add-button").click(function (e) {
+                var windowNewAddMap = $("#wndMapLegendAddNew");
+                if (!windowNewAddMap.data("kendoWindow")) {
+                    windowNewAddMap.kendoWindow({
+                        width: "400px",
+                        modal: true,
+                        resizable: false,
+                        title: "Add New Map Legend",
+                        open: function () {
+                            MapLegendViewModel.set("newMapLegendName", MapLegendViewModel.get("selectedName"));
+                            MapLegendViewModel.set("newMapLegendDisplay", null);
+                            MapLegendViewModel.set("newMapLegendColorId", null);
+                        }
+                    });
+                }
+                windowNewAddMap.data("kendoWindow").open().center();
+            });
+
+            //
+            // client side handler to close the add new map dialog window.
+            $("#wndMapLegendAddNew-close-button").click(function (e) {
+                $("#wndMapLegendAddNew").data("kendoWindow").close();
             });
         });
 
@@ -171,6 +219,7 @@
     <div class="k-content">
         <footer>This is developed by Omnis Development Philippines. Copyright (c) 2013.</footer></div>
     <%--Define various dialog windows here--%>
+    <%--Import data dialog window--%>
     <div id="wndImport" class="dialog-window">
         <div>
             Select iPhone log file(s) to import (*.csv).</div>
@@ -191,15 +240,116 @@
             <input id="selectFile" type="file" style="display: none;" />
         </div>
     </div>
+    <%--Map legend dialog window definition--%>
+    <div id="wndMapLegend" class="dialog-window">
+        <div>
+            <span>Select Map Legend:</span>&nbsp;
+            <input type="text" id="ddMapLegend" data-role="dropdownlist" data-bind="source: legendNames, events: { change: legendNameSelected }" />
+            <p>
+            </p>
+            <table data-role="grid" id="gridMapLegend">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Display
+                        </th>
+                        <th>
+                            Color ID
+                        </th>
+                        <th>
+                            Color
+                        </th>
+                    </tr>
+                </thead>
+                <tbody data-template="grid-map-legend-rowTemplate" data-bind="source: listBySelectedName">
+                </tbody>
+            </table>
+            <p>
+            </p>
+            <button id="wndMapLegend-add-button" class="k-button">
+                + Add New Map Legend</button>
+            <button id="wndMapLegend-close-button" class="k-button">
+                Close</button>
+        </div>
+    </div>
+    <%--Add new Map legend dialog window--%>
+    <div id="wndMapLegendAddNew" class="dialog-window">
+        <table class="tableForm">
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    <input id="newMapLegendName" name="newMapLegendName" type="text" data-role="dropdownlist"
+                        data-bind="source: legendNames, value: newMapLegendName" required validationmessage="Name is required." />
+                    <span class="k-invalid-msg" data-for="newMapLegendName"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Display
+                </td>
+                <td>
+                    <input id="newMapLegendDisplay" name="newMapLegendDisplay" type="text" maxlength="255"
+                        class="k-input" data-bind="value: newMapLegendDisplay" required validationmessage="Display is required." />
+                    <span class="k-invalid-msg" data-for="newMapLegendDisplay"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Color ID
+                </td>
+                <td>
+                    <input id="newMapLegendColorId" name="newMapLegendColorId" type="text" maxlength="3"
+                        class="k-input" data-bind="source: getColorIds, value: newMapLegendColorId" data-role="dropdownlist"
+                        validationmessage="Color ID is required." required />
+                    <span class="k-invalid-msg" data-for="newMapLegendColorId"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    <button class="k-button" data-bind="click: addMapLegend">
+                        Create</button>&nbsp;
+                    <button class="k-button" id="wndMapLegendAddNew-close-button">
+                        Close</button>
+                </td>
+            </tr>
+        </table>
+    </div>
     <%--Define various HTML templates here--%>
+    <%--Template for import items--%>
     <script type="text/x-kendo-template" id="window-item-import-template">
         <div style="white-space:nowrap;display:inline-block;padding:3px;">
-            <button data-bind="click: remove">Remove</button>&nbsp;<span data-bind="text: name"></span>    
+            <button data-bind="click: remove" class="k-button">Remove</button>&nbsp;<span data-bind="text: name"></span>    
         </div>    
+    </script>
+    <%--Template for map legend row--%>
+    <script type="text/x-kendo-template" id="grid-map-legend-rowTemplate">
+        <tr data-uid="#= uid #">
+            <td>
+                <img src="Content/icon_edit_small.png" class="icon-small" title="Edit" />&nbsp;
+                <img src="Content/icon_delete_small.png" class="icon-small" title="Delete" />
+                <strong>#: kendo.toString(get("Name")) #</strong>
+            </td>
+            <td data-bind="text: Display"></td>
+            <td data-bind="text: ColorId"></td>
+            <td>
+                <div style='height:12px;width:12px;border:1px;background-color:rgb(#: kendo.toString(get("RGB")) #);'
+                    title='#: kendo.toString(get("ColorName")) #'></div>
+            </td>
+        </tr>
     </script>
     <script src="Scripts/toastr.min.js" type="text/javascript"></script>
     <script src="Scripts/App/importViewModel.js" type="text/javascript"></script>
-    <script>        
+    <script src="Scripts/App/mapLegendViewModel.js" type="text/javascript"></script>
+    <script>
+        
     </script>
 </body>
 </html>
