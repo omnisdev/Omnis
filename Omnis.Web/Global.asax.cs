@@ -28,6 +28,7 @@ namespace Omnis.Web
             BundleTable.Bundles.Add(new StyleBundle("~/bundle/css")
                 .Include("~/Content/kendo/2013.1.319/kendo.common.min.css")
                 .Include("~/Content/kendo/2013.1.319/kendo.bootstrap.min.css")
+                .Include("~/Content/toastr.css")
                 .Include("~/Styles/main.css"));
         }
 

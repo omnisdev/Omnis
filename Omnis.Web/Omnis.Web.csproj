@@ -191,10 +191,13 @@
     <Content Include="Content\kendo\2013.1.319\Uniform\slider-v.gif" />
     <Content Include="Content\kendo\2013.1.319\Uniform\sprite%402x.png" />
     <Content Include="Content\kendo\2013.1.319\Uniform\sprite.png" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="robots.txt" />
+    <Content Include="Scripts\App\importViewModel.js" />
     <Content Include="Scripts\App\map.js" />
     <Content Include="Scripts\App\main.js" />
     <Content Include="Scripts\jquery-1.9.1-vsdoc.js" />
@@ -607,6 +610,8 @@
     <Content Include="Scripts\libs\modernizr-1.7.min.js" />
     <Content Include="Scripts\plugins.js" />
     <Content Include="Scripts\script.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
     <Content Include="Styles\main.css" />
@@ -654,6 +659,8 @@
   <ItemGroup>
     <Content Include="Omnis.Master" />
     <Content Include="Html5Boilerplate.Master" />
+    <None Include="Content\toastr.less" />
+    <None Include="Properties\PublishProfiles\OmnisWeb.pubxml" />
     <None Include="Scripts\jquery-1.9.1.min.map" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

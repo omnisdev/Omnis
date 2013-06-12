@@ -3,10 +3,48 @@ html, body, #map
 {
     height: 100%;
     margin: 0;
+    font-size: 8pt;
 }
 #map-canvas
 {
     height: 100%;
     padding: 0;
     border: 1px;
+}
+#splitter
+{
+    width: 100%;
+    height: 100%;
+}
+#center-pane
+{
+    width: 100%;
+    height: 100%;
+}
+.map-content
+{
+    width: 100%;
+    height: 100%;
+}
+.rectangle
+{
+    background-color: gray;
+    color: white;
+    padding: 3px;
+}
+#hide-map-legend
+{
+    cursor: pointer;
+}
+.dialog-window {
+    display: none;
+}
+.rectangle-border
+{
+    padding: 3px;
+    border: 1px;
+    border-color: gray;
+    border-style: solid;
+    overflow: scroll;
+    height: 150px;
 }
