@@ -4,11 +4,11 @@ var MapLegendViewModel = new kendo.observable({
     list: new kendo.data.ObservableArray([{}]),
     listBySelectedName: new kendo.data.ObservableArray([{}]),
     mapGrid: null,
-    selectedName: null,
     newMapLegendName: null,
     newMapLegendDisplay: null,
     newMapLegendColorId: null,
     newMapLegendDialogDiv: null,
+    legendNameSelectedValue: null,
     init: function (gridDiv, newMapDialogDiv) {
         var currObj = this;
         mapGrid = gridDiv;
@@ -27,13 +27,13 @@ var MapLegendViewModel = new kendo.observable({
                     { Id: 9, Name: "UL Throughput", ColorId: 2, Display: "1 <= Signal bar < 0", RGB: "0,0,255", ColorName: "Blue" }
                 ];
         this.set("list", data);
-        if (currObj.get("selectedName") == null) {
+        if (_.isNull(currObj.get("legendNameSelectedValue"))) { //
             currObj.set("listBySelectedName", currObj.get("list"));
         }
         // when the list is updated, also re-filter the data.
         currObj.list.bind("change", function (e) {
             if (e.items.length > 0) {
-                var filteredList = _.where(currObj.get("list"), { Name: currObj.get("selectedName") });
+                var filteredList = _.where(currObj.get("list"), { Name: currObj.get("legendNameSelectedValue") });
                 currObj.set("listBySelectedName", filteredList);
             }
         });
@@ -45,9 +45,15 @@ var MapLegendViewModel = new kendo.observable({
     legendNameSelected: function (e) {
         var currObj = this;
         var selectedItem = e.sender._selectedValue;
-        var filteredList = _.where(currObj.get("list"), { Name: selectedItem });
+        var filteredList;
+        if (!_.isEqual(e.sender.select(), 0)) {
+            filteredList = _.where(currObj.get("list"), { Name: selectedItem });
+        }
+        else {
+            filteredList = currObj.get("list");
+        }
         currObj.set("listBySelectedName", filteredList);
-        currObj.set("selectedName", selectedItem);
+        currObj.set("legendNameSelectedValue", selectedItem); //
     },
     getColorIds: function () {
         // generate mock color ids.
@@ -59,14 +65,17 @@ var MapLegendViewModel = new kendo.observable({
     },
     addMapLegend: function () {
         var currObj = this;
-        var name = currObj.get("newMapLegendName");
+        var name = currObj.get("legendNameSelectedValue");
         var display = currObj.get("newMapLegendDisplay");
         var colorid = currObj.get("newMapLegendColorId");
+        if (_.isNull(colorid)) {
+            colorid = 0;
+        }
         if (validator.validate()) {
             // add new mock data.
             currObj.list.push({ Id: 10, Name: name, ColorId: colorid, Display: display, RGB: "0,0,0", ColorName: "Black" });
             toastr.info("New map legend has been successfully created.", "New Map Legend");
-            if (newMapLegendDialogDiv != null) {
+            if (!_.isNull(newMapLegendDialogDiv)) {
                 newMapLegendDialogDiv.data("kendoWindow").close();
             }
         }

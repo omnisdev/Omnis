@@ -14,10 +14,21 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="stylesheet" href="Styles/style.css?v=2" />
     <link rel="stylesheet" media="handheld" href="Styles/handheld.css?v=2" />
-    <%: Styles.Render("~/bundle/css") %>
+    <link href="Content/kendo/2013.1.319/kendo.common.min.css" rel="stylesheet" type="text/css" />
+    <link href="Content/kendo/2013.1.319/kendo.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="Content/toastr.min.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/main.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/libs/modernizr-1.7.min.js" type="text/javascript"></script>
+    <script src="Scripts/kendo/2013.1.319/jquery.min.js" type="text/javascript"></script>
+    <script src="Scripts/kendo/2013.1.319/kendo.core.min.js" type="text/javascript"></script>
+    <script src="Scripts/kendo/2013.1.319/kendo.web.min.js" type="text/javascript"></script>
+    <script src="Scripts/underscore.min.js" type="text/javascript"></script>
+    <script src="Scripts/plugins.js" type="text/javascript"></script>
+    <script src="Scripts/script.js" type="text/javascript"></script>
+    <script src="Scripts/App/main.js" type="text/javascript"></script>
+    <script src="Scripts/App/map.js" type="text/javascript"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"> 
     </script>
-    <%: Scripts.Render("~/bundle/js") %>
     <script type="text/javascript">
         var map;
         $(document).ready(function () {
@@ -134,7 +145,7 @@
                         resizable: false,
                         title: "Add New Map Legend",
                         open: function () {
-                            MapLegendViewModel.set("newMapLegendName", MapLegendViewModel.get("selectedName"));
+                            MapLegendViewModel.set("newMapLegendName", MapLegendViewModel.get("legendNameSelectedValue"));
                             MapLegendViewModel.set("newMapLegendDisplay", null);
                             MapLegendViewModel.set("newMapLegendColorId", null);
                         }
@@ -224,7 +235,8 @@
         <div>
             Select iPhone log file(s) to import (*.csv).</div>
         <br />
-        <div id="imported-list" class="rectangle-border" data-bind="source: list" data-template="window-item-import-template"
+        <div id="imported-list" class="rectangle-border" data-bind="source: list" 
+            data-template="window-item-import-template"
             data-role="listview">
         </div>
         <br />
@@ -244,7 +256,9 @@
     <div id="wndMapLegend" class="dialog-window">
         <div>
             <span>Select Map Legend:</span>&nbsp;
-            <input type="text" id="ddMapLegend" data-role="dropdownlist" data-bind="source: legendNames, events: { change: legendNameSelected }" />
+            <input type="text" id="ddMapLegend" data-role="dropdownlist" 
+                data-option-label="(All)"
+                data-bind="source: legendNames, value: legendNameSelectedValue, events: { change: legendNameSelected }" />
             <p>
             </p>
             <table data-role="grid" id="gridMapLegend">
@@ -284,7 +298,8 @@
                 </td>
                 <td>
                     <input id="newMapLegendName" name="newMapLegendName" type="text" data-role="dropdownlist"
-                        data-bind="source: legendNames, value: newMapLegendName" required validationmessage="Name is required." />
+                        data-bind="source: legendNames, value: legendNameSelectedValue" 
+                        required validationMessage="Name is required." />
                     <span class="k-invalid-msg" data-for="newMapLegendName"></span>
                 </td>
             </tr>
@@ -294,7 +309,7 @@
                 </td>
                 <td>
                     <input id="newMapLegendDisplay" name="newMapLegendDisplay" type="text" maxlength="255"
-                        class="k-input" data-bind="value: newMapLegendDisplay" required validationmessage="Display is required." />
+                        class="k-input" data-bind="value: newMapLegendDisplay" required validationMessage="Display is required." />
                     <span class="k-invalid-msg" data-for="newMapLegendDisplay"></span>
                 </td>
             </tr>
@@ -304,8 +319,8 @@
                 </td>
                 <td>
                     <input id="newMapLegendColorId" name="newMapLegendColorId" type="text" maxlength="3"
-                        class="k-input" data-bind="source: getColorIds, value: newMapLegendColorId" data-role="dropdownlist"
-                        validationmessage="Color ID is required." required />
+                        class="k-input" data-bind="source: getColorIds, value: newMapLegendColorId" 
+                        data-role="dropdownlist" validationMessage="Color ID is required." required />
                     <span class="k-invalid-msg" data-for="newMapLegendColorId"></span>
                 </td>
             </tr>
