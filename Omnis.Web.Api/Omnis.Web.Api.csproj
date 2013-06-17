@@ -87,6 +87,20 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Omnis.Business\Omnis.Business.csproj">
+      <Project>{5A193998-3A5C-4B90-B636-E66644141A9E}</Project>
+      <Name>Omnis.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Omnis.Data\Omnis.Data.csproj">
+      <Project>{398B1377-91F1-4133-87F3-F106A5749933}</Project>
+      <Name>Omnis.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Omnis.Managers\Omnis.Managers.csproj">
+      <Project>{BEDBF12B-B3E0-485C-BD0B-018854677E71}</Project>
+      <Name>Omnis.Managers</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
@@ -97,7 +111,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>5243</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5243/</IISUrl>
+          <IISUrl>http://localhost:5243/OmnisApi</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

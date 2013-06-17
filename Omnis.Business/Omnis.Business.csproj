@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,13 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationManager.cs" />
+    <Compile Include="Globals.cs" />
     <Compile Include="Models\ColorMap.cs" />
-    <Compile Include="Models\DownloadThroughputLegend.cs" />
     <Compile Include="Models\QueueItem.cs" />
-    <Compile Include="Models\SignalBarLegend.cs" />
-    <Compile Include="Models\SignalLegend.cs" />
-    <Compile Include="Models\TechnologyLegend.cs" />
-    <Compile Include="Models\UploadThroughputLegend.cs" />
+    <Compile Include="Models\MapLegend.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

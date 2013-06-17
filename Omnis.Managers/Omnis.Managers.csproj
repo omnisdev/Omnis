@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{398B1377-91F1-4133-87F3-F106A5749933}</ProjectGuid>
+    <ProjectGuid>{BEDBF12B-B3E0-485C-BD0B-018854677E71}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Omnis.Data</RootNamespace>
-    <AssemblyName>Omnis.Data</AssemblyName>
+    <RootNamespace>Omnis.Managers</RootNamespace>
+    <AssemblyName>Omnis.Managers</AssemblyName>
     <TargetFrameworkVersion>v4.0.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,23 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\RavenDB\Client\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Client.2.0.2375\lib\net40\Raven.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Client.Debug">
-      <HintPath>..\..\..\..\RavenDB\Client\Raven.Client.Debug.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Client.Lightweight, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Client.2.0.2375\lib\net40\Raven.Client.Lightweight.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,20 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMapLegendRepository.cs" />
-    <Compile Include="IQueueItemRepository.cs" />
-    <Compile Include="MapLegendRepository.cs" />
+    <Compile Include="MapLegendManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueueItemRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Omnis.Business\Omnis.Business.csproj">
       <Project>{5A193998-3A5C-4B90-B636-E66644141A9E}</Project>
       <Name>Omnis.Business</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Omnis.Data\Omnis.Data.csproj">
+      <Project>{398B1377-91F1-4133-87F3-F106A5749933}</Project>
+      <Name>Omnis.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

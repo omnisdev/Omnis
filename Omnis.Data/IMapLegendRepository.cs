@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IQueueItemRepository.cs" company="">
+// <copyright file="IMapLegendRepository.cs" company="">
 //   
 // </copyright>
 // <summary>
-//   The i queue item repository.
+//   The i map legend repository.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -14,9 +14,9 @@ namespace Omnis.Data
     using Omnis.Business.Models;
 
     /// <summary>
-    /// The i queue item repository.
+    /// The i map legend repository.
     /// </summary>
-    public interface IQueueItemRepository
+    public interface IMapLegendRepository
     {
         #region Public Methods and Operators
 
@@ -24,40 +24,28 @@ namespace Omnis.Data
         /// The add or update.
         /// </summary>
         /// <param name="item">
+        /// </param>
+        void AddOrUpdate(MapLegend item);
+
+        /// <summary>
+        /// The remove.
+        /// </summary>
+        /// <param name="item">
         /// The item.
         /// </param>
-        /// <returns>
-        /// The add or update.
-        /// </returns>
-        int AddOrUpdate(QueueItem item);
+        void Remove(MapLegend item);
 
         /// <summary>
-        /// The remove.
+        /// The clear.
         /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        /// <returns>
-        /// The remove.
-        /// </returns>
-        bool Remove(int id);
+        void RemoveAll();
 
         /// <summary>
-        /// The select.
+        /// The select all.
         /// </summary>
         /// <returns>
         /// </returns>
-        List<QueueItem> Select();
-
-        /// <summary>
-        /// The select by id.
-        /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        /// <returns>
-        /// </returns>
-        QueueItem SelectById(int id);
+        List<MapLegend> Select();
 
         #endregion
     }

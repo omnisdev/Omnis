@@ -1,29 +1,27 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="SignalBarLegent.cs" company="">
+// <copyright file="Globals.cs" company="">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Omnis.Business.Models
+namespace Omnis.Business
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class SignalBarLegend
+    public static class Globals
     {
-        public int Id { get; set; }
+        public static string DocumentUrlKeyName = "DocumentUrl";
 
-        [Required]
-        public string Name { get; set; }
+        public static string DefaultDocumenturl = "http://localhost:8080";
 
-        public int ColorId { get; set; }
+        public static string MapLegendCollectionName = "MapLegend";
 
-        public string Display { get; set; }
+        public static string MapLegendIndexName = "Raven/DocumentsByEntityName";
     }
 }

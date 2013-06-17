@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omnis.Data", "Omnis.Data\Om
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omnis.Business", "Omnis.Business\Omnis.Business.csproj", "{5A193998-3A5C-4B90-B636-E66644141A9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omnis.Managers", "Omnis.Managers\Omnis.Managers.csproj", "{BEDBF12B-B3E0-485C-BD0B-018854677E71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,16 @@ Global
 		{5A193998-3A5C-4B90-B636-E66644141A9E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5A193998-3A5C-4B90-B636-E66644141A9E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5A193998-3A5C-4B90-B636-E66644141A9E}.Release|x86.ActiveCfg = Release|Any CPU
+		{BEDBF12B-B3E0-485C-BD0B-018854677E71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEDBF12B-B3E0-485C-BD0B-018854677E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEDBF12B-B3E0-485C-BD0B-018854677E71}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BEDBF12B-B3E0-485C-BD0B-018854677E71}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BEDBF12B-B3E0-485C-BD0B-018854677E71}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BEDBF12B-B3E0-485C-BD0B-018854677E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEDBF12B-B3E0-485C-BD0B-018854677E71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEDBF12B-B3E0-485C-BD0B-018854677E71}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BEDBF12B-B3E0-485C-BD0B-018854677E71}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BEDBF12B-B3E0-485C-BD0B-018854677E71}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -73,8 +73,25 @@ var MapLegendViewModel = new kendo.observable({
         }
         if (validator.validate()) {
             // add new mock data.
-            currObj.list.push({ Id: 10, Name: name, ColorId: colorid, Display: display, RGB: "0,0,0", ColorName: "Black" });
-            toastr.info("New map legend has been successfully created.", "New Map Legend");
+
+            var param = new Object();
+            param.Name = name;
+            param.Display = display;
+            param.ColorId = colorid;
+            $.ajax({
+                url: 'api/MapLegend/Add',
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json",
+                data: JSON.stringify(param),
+                success: function (data) {
+                    currObj.list.push({ Id: 10, Name: name, ColorId: colorid, Display: display, RGB: "0,0,0", ColorName: "Black" });
+                    toastr.info("New map legend has been successfully created.", "New Map Legend");
+                },
+                error: function (x, y, z) {
+                    toastr.error("Failed to create a new map legend.", "New Map Legend");
+                }
+            });
             if (!_.isNull(newMapLegendDialogDiv)) {
                 newMapLegendDialogDiv.data("kendoWindow").close();
             }

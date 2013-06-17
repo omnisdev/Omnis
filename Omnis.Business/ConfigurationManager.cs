@@ -1,29 +1,25 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="DownloadThroughputLegend.cs" company="">
+// <copyright file="ConfigurationManager.cs" company="">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Omnis.Business.Models
+namespace Omnis.Business
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    using System.Configuration;
     using System.Linq;
     using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class DownloadThroughputLegend
+    public static class ConfigManager
     {
-        public int Id { get; set; }
-
-        [Required]
-        public string Name { get; set; }
-
-        public int ColorId { get; set; }
-
-        public string Display { get; set; }
+        public static object GetValue(string key)
+        {
+            return ConfigurationManager.AppSettings[key];
+        }
     }
 }

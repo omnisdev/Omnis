@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="UploadThroughputLegend.cs" company="">
+// <copyright file="SignalBarLegent.cs" company="">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -15,7 +15,7 @@ namespace Omnis.Business.Models
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class UploadThroughputLegend
+    public class MapLegend
     {
         public int Id { get; set; }
 
