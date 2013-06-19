@@ -88,6 +88,11 @@ namespace Omnis.Web
                 name: "MapLegendApi",
                 routeTemplate: "Api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional });
+
+            RouteTable.Routes.MapHttpRoute(
+                name: "ColorMapApi",
+                routeTemplate: "Api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional });
         }
 
         /// <summary>

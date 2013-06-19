@@ -56,6 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorMapRepository.cs" />
+    <Compile Include="LogRepository.cs" />
     <Compile Include="IMapLegendRepository.cs" />
     <Compile Include="IQueueItemRepository.cs" />
     <Compile Include="MapLegendRepository.cs" />

@@ -52,6 +52,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -72,7 +73,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Compile Include="Omnis.Service.Installer.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Omnis.Business\Omnis.Business.csproj">
+      <Project>{5A193998-3A5C-4B90-B636-E66644141A9E}</Project>
+      <Name>Omnis.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Omnis.Managers\Omnis.Managers.csproj">
+      <Project>{BEDBF12B-B3E0-485C-BD0B-018854677E71}</Project>
+      <Name>Omnis.Managers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

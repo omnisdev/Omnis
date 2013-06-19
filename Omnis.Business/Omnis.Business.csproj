@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FileHelpers">
+      <HintPath>..\packages\FileHelpers-Stable.2.9.9\lib\4.0\FileHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -45,6 +48,7 @@
     <Compile Include="ConfigurationManager.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Models\ColorMap.cs" />
+    <Compile Include="Models\Log.cs" />
     <Compile Include="Models\QueueItem.cs" />
     <Compile Include="Models\MapLegend.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

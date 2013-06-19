@@ -188,6 +188,23 @@
             </tr>
         </table>
     </div>
+    <%--Color mapping dialog window--%>
+    <div id="wndColorMap" class="dialog-window">
+        <div id="gridColorMap"></div>
+        <p></p>
+        <button id="AddColorMapButton" class="k-button">+ Add Color Map</button>&nbsp;
+        <button id="RefreshColorMapButton" class="k-button">Refresh</button>&nbsp;
+        <button id="CloseColorMapButton" class="k-button">Close</button>      
+    </div>
+    <%--Add color map dialog window--%>
+    <div id="wndColorMap-Add">
+        Color name: <input type="text" class="k-input" id="NewColorName"/>
+        <p></p>
+        RGB: <input type="text" class="k-input" id="NewColorRgb"/>
+        <p></p>
+        <button id="AddNewColorMapButton" class="k-button">Save</button>&nbsp;        
+        <button id="CancelColorMapButton" class="k-button">Cancel</button>
+    </div>
     <%--Define various HTML templates here--%>
     <%--Template for import items--%>
     <script type="text/x-kendo-template" id="window-item-import-template">
@@ -214,5 +231,8 @@
     <script src="Scripts/toastr.min.js" type="text/javascript"></script>
     <script src="Scripts/App/importViewModel.js" type="text/javascript"></script>
     <script src="Scripts/App/mapLegendViewModel.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        
+    </script>
 </body>
 </html>

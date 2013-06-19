@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorMapManager.cs" />
+    <Compile Include="LogManager.cs" />
     <Compile Include="MapLegendManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

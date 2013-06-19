@@ -45,6 +45,19 @@ $(document).ready(function () {
                 }
                 windowMapLegend.data("kendoWindow").open().center();
             }
+            else if (selectedMenu === "Color Mapping Options") {
+                var windowColorMap = $("#wndColorMap");
+                if (!windowColorMap.data("kendoWindow")) {
+                    windowColorMap.kendoWindow({
+                        width: "600px",
+                        modal: true,
+                        resizable: false,
+                        title: "Color Mapping Options",
+                        open: windowColorMapOpened
+                    });
+                }
+                windowColorMap.data("kendoWindow").open().center();
+            }
         }
     });
 
@@ -77,12 +90,14 @@ $(document).ready(function () {
     //
     // client side handler to close the import window.
     $("#window-close-import").click(function (e) {
+        e.preventDefault();
         $("#wndImport").data("kendoWindow").close();
     });
 
     //
     // client side handler to close the dialog for map legend.
     $("#wndMapLegend-close-button").click(function (e) {
+        e.preventDefault();
         $("#wndMapLegend").data("kendoWindow").close();
     });
 
@@ -106,6 +121,7 @@ $(document).ready(function () {
     //
     // client side handler when adding new map legend.
     $("#wndMapLegend-add-button").click(function (e) {
+        e.preventDefault();
         var windowNewAddMap = $("#wndMapLegendAddNew");
         if (!windowNewAddMap.data("kendoWindow")) {
             windowNewAddMap.kendoWindow({
@@ -126,7 +142,81 @@ $(document).ready(function () {
     //
     // client side handler to close the add new map dialog window.
     $("#wndMapLegendAddNew-close-button").click(function (e) {
+        e.preventDefault();
         $("#wndMapLegendAddNew").data("kendoWindow").close();
+    });
+
+    //
+    // client side click handler for CloseColorMapButton
+    $("#CloseColorMapButton").click(function (e) {
+        e.preventDefault();
+        $("#wndColorMap").data("kendoWindow").close();
+    });
+
+    //
+    // client side click handler for AddColorMapButton
+    $("#AddColorMapButton").click(function (e) {
+        e.preventDefault();
+        var wndAddNewColorMap = $("#wndColorMap-Add");
+        if (!wndAddNewColorMap.data("kendoWindow")) {
+            wndAddNewColorMap.kendoWindow({
+                width: "400px",
+                modal: true,
+                resizable: false,
+                title: "Add New Color Map",
+                open: function () {
+                }
+            });
+        }
+        wndAddNewColorMap.data("kendoWindow").open().center();
+    });
+
+    //
+    // click handler for CancelColorMapButton
+    $("#CancelColorMapButton").click(function (e) {
+        e.preventDefault();
+        $("#wndColorMap-Add").data("kendoWindow").close();
+    });
+
+    //
+    // click handler for AddNewColorMapButton
+    $("#AddNewColorMapButton").click(function (e) {
+        e.preventDefault();
+        var name = $("#NewColorName").val();
+        var rgb = $("#NewColorRgb").val();
+        var arr = rgb.split(",");
+        var item = {};
+        item.Name = name;
+        item.R = arr[0];
+        item.G = arr[1];
+        item.B = arr[2];
+
+        $.ajax({
+            url: 'api/ColorMap/Add',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify(item),
+            beforeSend: function () {
+                toastr.info("Creating new color map...", "New Color Map");
+            },
+            success: function (data) {
+                toastr.success("New color map has been successfully created.", "New Color Map");
+                $("#wndColorMap-Add").data("kendoWindow").close();
+            },
+            error: function (x, y, z) {
+                toastr.error("Failed to create a new color map.", "New Color Map");
+            }
+        });
+    });
+
+    //
+    // click handler for RefreshColorMapButton
+    $("#RefreshColorMapButton").click(function (e) {
+        e.preventDefault();
+        toastr.info("Refeshing color map data...");
+        colorMapDatasource.read();
+        //$("#gridColorMap").data("kendoGrid").refresh();
     });
 });
 
@@ -138,4 +228,30 @@ function initialize() {
     map = new GoogleMap(mapDiv);
     map.Initialize();
     map.SetMarker(14.62057, 120.96597);
-} 
+}
+
+var colorMapDatasource;
+
+function windowColorMapOpened(e) {
+    colorMapDatasource = new kendo.data.DataSource({
+        transport: {
+            read: {
+                url: "api/ColorMap/Get",
+                dataType: "json"
+            }
+        },
+        pageSize: 10,
+        serverPaging: false,
+        serverSorting: false
+    });
+
+    if ($("#gridColorMap").data("kendoGrid")) {
+        $("#gridColorMap").data("kendoGrid").destroy();
+    }
+    $("#gridColorMap").kendoGrid({
+        dataSource: colorMapDatasource,
+        selectable: "row",
+        pageable: true,
+        sortable: true
+    });
+}

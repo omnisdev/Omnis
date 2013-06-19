@@ -86,7 +86,7 @@ var MapLegendViewModel = new kendo.observable({
                 data: JSON.stringify(param),
                 success: function (data) {
                     currObj.list.push({ Id: 10, Name: name, ColorId: colorid, Display: display, RGB: "0,0,0", ColorName: "Black" });
-                    toastr.info("New map legend has been successfully created.", "New Map Legend");
+                    toastr.success("New map legend has been successfully created.", "New Map Legend");
                 },
                 error: function (x, y, z) {
                     toastr.error("Failed to create a new map legend.", "New Map Legend");

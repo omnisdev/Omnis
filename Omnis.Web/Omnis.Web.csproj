@@ -649,6 +649,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\ColorMapController.cs" />
     <Compile Include="Api\MapLegendController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

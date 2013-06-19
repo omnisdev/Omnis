@@ -22,6 +22,10 @@ namespace Omnis.Business
 
         public static string MapLegendCollectionName = "MapLegend";
 
+        public static string ColorMapCollectionName = "ColorMap";
+
+        public static string LogCollectionName = "CsvLog";
+
         public static string MapLegendIndexName = "Raven/DocumentsByEntityName";
     }
 }

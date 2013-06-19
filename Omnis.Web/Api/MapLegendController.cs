@@ -23,7 +23,6 @@ namespace Omnis.Web.Api
     /// </summary>
     public class MapLegendController : ApiController
     {
-        // GET api/<controller>
         #region Public Methods and Operators
 
         /// <summary>
@@ -97,7 +96,5 @@ namespace Omnis.Web.Api
         }
 
         #endregion
-
-        // DELETE api/<controller>/5
     }
 }
